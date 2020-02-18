@@ -46,8 +46,12 @@ AOI_pix_tree <- na.omit(AOI_pix_tree)
 AOI_pix_tree <- droplevels(AOI_pix_tree)
 AOI_pix_tree$LowCP <- 40.76
 AOI_pix_tree$HighCP <- 64.98
+
+##Write this dataframe out to assign CP values to it using VegClass
 write.csv(AOI_pix_tree, "../Fossil_Project/AOI_Pixel.csv")
+##THis is the same as above but the correct CP values are associated with each pixel
 CYE <- read.csv("../Fossil_Project/AOI_Pixel.csv")
+##Start manipulating the data to get everything in the correct units
 CYE$Biomass_CRM_kgacr <- CYE$BPH_GE_3_CRM * 0.404686
 CYE$BIomass_Jenk_hgacr <- CYE$BPH_GE_3_JENK * 0.404686
 CYE$Biomass_CRM_mtacr <- CYE$Biomass_CRM_kgacr/1000
@@ -96,5 +100,5 @@ CYE_final$CRM_HighCP_Total <- CYE_final$CRM_HighCP_AllLive * 0.22239501
 CYE_final$CRM_lowCP_Total <- CYE_final$CRM_lowCP_AllLive * 0.22239501
 CYE_final$Jenk_HighCP_Total <- CYE_final$Jenk_HighCP_AllLive * 0.22239501
 CYE_final$Jenk_lowCP_Total <- CYE_final$Jenk_lowCP_AllLive * 0.22239501
-
+##Write this DF out and do a summation of each type of carbon calculation and add in deductions
 write.csv(CYE_final, "../Fossil_Project/CYE_Final.csv", row.names = FALSE)
